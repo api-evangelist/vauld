@@ -1,8 +1,28 @@
 aid: vauld
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/vauld.png
 name: Vauld
-description: 'Vauld is a company surfaced as a portfolio company of pantera-capital and added to the API
-  Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Vauld (formerly Bank of Hodlers) is a crypto asset management platform founded
+  in India and headquartered in Singapore, backed by Peter Thiel's Valar
+  Ventures, Pantera Capital, and Coinbase Ventures. Its Enterprise API exposes
+  wallets, INR fiat rails, KYC verification, crypto swaps, borrowing, and
+  lending to partner organisations, authenticated with HMAC-SHA256 request
+  signing. Vauld suspended customer withdrawals in July 2022 and entered
+  creditor-protection restructuring in Singapore; the API documentation remains
+  published and the platform API still responds, though the documented testnet
+  hosts no longer resolve.
 url: https://raw.githubusercontent.com/api-evangelist/vauld/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +30,96 @@ x-backed-by:
 - pantera-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v1
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Crypto
-apis: []
+- Lending
+- Borrowing
+- Trading
+- Wallets
+- KYC
+- Fintech
+- India
+- Singapore
+apis:
+- name: Vauld Enterprise API
+  description: >-
+    Enterprise API for partner organisations covering fiat<>crypto trading on
+    India INR rails (deposits via Cards/UPI/NEFT/IMPS/RTGS), automated KYC
+    verification (Aadhar/PAN/VoterID/Passport), crypto<>crypto swaps, custodial
+    wallets, collateralized borrowing, and interest-earning lending. All
+    operations are HTTP POST with JSON bodies signed via HMAC-SHA256. The
+    documented testnet base (apis.bankofhodlers.com) no longer resolves;
+    production URLs and API keys are issued on request.
+  humanURL: https://docs.vauld.com/
+  baseURL: https://api.vauld.com
+  tags:
+  - Crypto
+  - Lending
+  - Borrowing
+  - Wallets
+  - KYC
+  - Fiat
+  properties:
+  - type: Documentation
+    url: https://docs.vauld.com/
+  - type: APIReference
+    url: https://docs.vauld.com/
+  - type: Authentication
+    url: authentication/vauld-authentication.yml
+  - type: Webhooks
+    url: asyncapi/vauld-webhooks.yml
+  - type: Sandbox
+    url: sandbox/vauld-sandbox.yml
+  - type: ErrorCatalog
+    url: errors/vauld-problem-types.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/vauld-domain-security.yml
 - type: Website
   url: https://www.vauld.com/
+- type: Documentation
+  url: https://docs.vauld.com/
+- type: APIReference
+  url: https://docs.vauld.com/
+- type: GettingStarted
+  url: https://docs.vauld.com/
+- type: Support
+  url: https://support.vauld.com/en/
+- type: HelpCenter
+  url: https://support.vauld.com/en/
+- type: GitHubOrganization
+  url: https://github.com/Vauld
+- type: Pricing
+  url: https://vauld.com/fees
+- type: Authentication
+  url: authentication/vauld-authentication.yml
+- type: Conventions
+  url: conventions/vauld-conventions.yml
+- type: Webhooks
+  url: asyncapi/vauld-webhooks.yml
+- type: Sandbox
+  url: sandbox/vauld-sandbox.yml
+- type: ErrorCatalog
+  url: errors/vauld-problem-types.yml
+- type: Components
+  url: components/vauld-components.yml
+- type: Conformance
+  url: conformance/vauld-conformance.yml
+- type: Lifecycle
+  url: lifecycle/vauld-lifecycle.yml
+- type: LLMsTxt
+  url: llms/vauld-llms.txt

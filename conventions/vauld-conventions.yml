@@ -1,0 +1,65 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vauld.com/
+description: >-
+  Cross-cutting request/response conventions of the Vauld Enterprise API
+  (fiat<>crypto trading, swaps, wallets, borrowing, lending), captured from
+  the published API reference at docs.vauld.com. Vauld publishes no OpenAPI;
+  everything here is from the HTML docs.
+
+base_url: https://apis.bankofhodlers.com (documented testnet base; production URLs issued on contact)
+api_style: JSON-RPC-flavored REST — every documented operation is HTTP POST with a JSON body
+
+authentication:
+  scheme: HMAC-SHA256 request signing (hex digest in `hmac` header, APIKey as seed)
+  detail: authentication/vauld-authentication.yml
+
+idempotency:
+  supported: false
+  notes: No idempotency-key mechanism is documented.
+
+pagination:
+  style: none-documented
+  notes: >-
+    List endpoints (getAllOrders, orders, allExchangeOrders, orgUsers, txns)
+    are documented without pagination parameters.
+
+request_shape:
+  content_type: application/json
+  common_fields:
+    orgID: Organisation ID, required in every request body
+    userID: Returned by /users/create; prerequisite for user-scoped calls
+
+response_envelope:
+  shape: |-
+    {
+      success: true / false,
+      data: { ... },          // when success is true
+      error: {                // when success is false
+        message: "Single line error",
+        stack: "reason for failure"
+      }
+    }
+  notes: Only the data part of each response is documented per endpoint.
+  detail: errors/vauld-problem-types.yml
+
+amounts:
+  convention: >-
+    All token values in calls and responses are in base (smallest) units —
+    e.g. btc base 100000000 (satoshi), eth base 1000000000000000000 (wei).
+
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: Borrowing/lending modules use /api/v1/...; fiat trading uses /enterprise/api/v1/.
+
+webhooks:
+  supported: true
+  registration: POST /misc/addWebhook (plus /api/v1/borrowing/registerWebhook for collateralization-ratio alerts)
+  detail: asyncapi/vauld-webhooks.yml
+
+rate_limits:
+  signaling: none-documented
+
+request_tracing:
+  header: none-documented

@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vauld.com/ and live host probes (2026-07-21)
+description: >-
+  Lifecycle posture of the Vauld platform and Enterprise API. Vauld froze
+  customer withdrawals in July 2022 and entered creditor-protection
+  restructuring in Singapore; the platform API (api.vauld.com) still
+  responds and reports registration disabled with withdrawals enabled,
+  and the Enterprise API docs remain published, but the documented
+  testnet hosts no longer resolve.
+
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: Borrowing/lending under /api/v1/; fiat trading under /enterprise/api/v1/.
+
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal deprecation policy published. The docs mark the Instant
+    Payment SDK section "(Deprecated)" inline.
+
+status_page: null
+
+sla: null
+
+platform_status:
+  probed: '2026-07-21'
+  api_host: https://api.vauld.com
+  response: '{"success":true,"data":{"version":"0.8.512","mobile_lts":"3.0.6","register_enabled":false,"withdraw_enabled":true}}'
+  register_enabled: false
+  withdraw_enabled: true
+  dead_hosts:
+    - apis.bankofhodlers.com (documented testnet base, DNS failure)
+    - api-dev.bankofhodlers.com (documented fiat-trading base, DNS failure)
+    - status.vauld.com (HTTP 404)
+
+deprecated_operations: []

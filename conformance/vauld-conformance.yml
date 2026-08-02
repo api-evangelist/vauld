@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.vauld.com/
+description: >-
+  Standards conformance of the Vauld Enterprise API, derived from the
+  published API reference (Vauld publishes no OpenAPI and no formal
+  compliance program page that could be verified).
+
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: Authentication is custom HMAC-SHA256 request signing, not OAuth 2.0.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect surface documented; /.well-known/openid-configuration returns the app fallback, not a discovery document.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a vendor success/error envelope (message/stack), not application/problem+json.
+  - id: json:api
+    conforms: false
+    evidence: Vendor JSON envelope, not JSON:API media type.
+  - id: hmac-request-signing
+    conforms: true
+    evidence: All requests signed with HMAC-SHA256 of the URI-encoded payload, hex digest in the hmac header.
+  - id: webhooks
+    conforms: true
+    evidence: Documented webhook event surface (user/kyc/fiat/crypto) with registration endpoints.
+  - id: india-kyc
+    conforms: true
+    evidence: Documented automated KYC flows for Indian identity documents (Aadhar, PAN, VoterID, Passport) with instant verification and manual-verification failsafe.
+  - id: pagination
+    conforms: false
+    evidence: No pagination parameters documented on list endpoints.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key mechanism documented.

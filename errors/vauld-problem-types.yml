@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vauld.com/
+format: vendor-envelope
+description: >-
+  Error semantics of the Vauld Enterprise API, captured from the published
+  API reference. Vauld publishes no RFC 9457 problem-details and no full
+  error-code registry; every response uses a uniform success/error
+  envelope. Captured verbatim from the docs — this is the complete
+  published error surface.
+
+envelope:
+  shape: |-
+    {
+      success: false,
+      error: {
+        message: "Single line error",     // short error / status-code-like value
+        stack: "reason for failure"       // human-readable cause
+      }
+    }
+  notes: >-
+    On success the envelope is { success: true, data: {...} }. The docs
+    document only the data part per endpoint; error cases share this
+    single envelope.
+
+examples:
+  - message: '403'
+    stack: This user already exists on our platform
+    source: 'docs sample "Response format: Failed"'
+
+registry_published: false

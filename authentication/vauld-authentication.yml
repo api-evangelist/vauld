@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vauld.com/
+docs: https://docs.vauld.com/
+description: >-
+  Authentication profile for the Vauld Enterprise API, captured from the
+  published API reference at docs.vauld.com. Vauld does not publish an
+  OpenAPI document; this profile was captured from the HTML docs.
+summary:
+  types: [hmac]
+  api_key_in: [hmac-seed]
+  oauth2_flows: []
+schemes:
+  - name: hmac
+    type: custom-hmac
+    description: >-
+      HMAC-SHA256 request signing. The JSON request body is serialized to
+      URI format (key=value pairs joined with '&'), then an HMAC hash is
+      computed with the SHA-256 algorithm using the organisation's APIKey
+      as the seed. The hash, hex-encoded, is sent in the `hmac` request
+      header alongside `Content-Type: application/json`. Every request
+      body also carries the organisation's `orgID`.
+    headers:
+      - name: hmac
+        value: HMAC-SHA256 hash of the URI-encoded payload, hex-encoded
+      - name: Content-Type
+        value: application/json
+    credentials:
+      - name: APIKey
+        obtain: Contact Vauld (email in docs) for production API keys; a test API key is provided in the docs per API section
+      - name: orgID
+        obtain: Organisation ID issued by Vauld, sent in every request body
+    sources: [https://docs.vauld.com/]
+notes: >-
+  No OAuth2, OpenID Connect, or bearer-token surface is documented. All
+  documented operations are HTTP POST with the HMAC header. The docs ship
+  a JavaScript (CryptoJS) example of the signing routine.

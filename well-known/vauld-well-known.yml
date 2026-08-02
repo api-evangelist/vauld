@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+description: >-
+  /.well-known/ discovery probe across Vauld hosts, 2026-07-21. No valid
+  well-known documents were found: www.vauld.com and api.vauld.com return
+  a catch-all fallback (the SPA page / app-config JSON) with HTTP 200 for
+  every path, docs.vauld.com returns 404, and the documented testnet hosts
+  (apis.bankofhodlers.com, api-dev.bankofhodlers.com) no longer resolve.
+hosts:
+  - host: https://www.vauld.com
+    documents:
+      - {path: /.well-known/security.txt, status: 200, valid: false, note: HTML SPA fallback, file: null}
+      - {path: /.well-known/openid-configuration, status: 200, valid: false, note: HTML SPA fallback, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 200, valid: false, note: HTML SPA fallback, file: null}
+      - {path: /.well-known/api-catalog, status: 200, valid: false, note: HTML SPA fallback, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 200, valid: false, note: HTML SPA fallback, file: null}
+  - host: https://api.vauld.com
+    documents:
+      - {path: /.well-known/security.txt, status: 200, valid: false, note: app-config JSON fallback, file: null}
+      - {path: /.well-known/openid-configuration, status: 200, valid: false, note: app-config JSON fallback, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 200, valid: false, note: app-config JSON fallback, file: null}
+      - {path: /.well-known/api-catalog, status: 200, valid: false, note: app-config JSON fallback, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 200, valid: false, note: app-config JSON fallback, file: null}
+  - host: https://docs.vauld.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://apis.bankofhodlers.com
+    documents:
+      - {path: /.well-known/security.txt, status: dns-failure}
+  - host: https://api-dev.bankofhodlers.com
+    documents:
+      - {path: /.well-known/security.txt, status: dns-failure}

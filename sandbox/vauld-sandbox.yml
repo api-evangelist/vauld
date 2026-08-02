@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vauld.com/
+description: >-
+  Testnet / sandbox surface of the Vauld Enterprise API, captured from the
+  published API reference. Vauld operates a dedicated testnet environment
+  separate from production; production URLs and API keys are issued on
+  request.
+
+environments:
+  - name: testnet
+    base_url: https://apis.bankofhodlers.com
+    notes: >-
+      Documented testnet base URL (Vauld was formerly Bank of Hodlers).
+      As of 2026-07-21 this hostname no longer resolves (probe: DNS
+      failure); the docs still publish it as the testnet base.
+  - name: testnet-fiat-trading
+    base_url: https://api-dev.bankofhodlers.com/enterprise/api/v1/
+    notes: >-
+      Documented base URL for the Fiat<>Crypto Trading APIs (India INR
+      rails). As of 2026-07-21 this hostname no longer resolves.
+  - name: production
+    base_url: issued-on-request
+    notes: Contact Vauld (email in docs) for production URLs and API keys.
+
+test_credentials:
+  provided: true
+  notes: >-
+    The docs state that a test API key and organisationID are provided in
+    each offered API type page's introduction; the values themselves are
+    issued per-organisation and are not reproduced here.
+
+blockchain_testnets:
+  - chain: Ethereum / ERC20
+    network: kovan
+    notes: Testnet and mainnet addresses differ for some blockchain protocols.
+
+client_side_testing:
+  - name: Instant Payment Cards SDK (test environment)
+    script: https://bohstaticfiles.s3.amazonaws.com/cardsSDK_v1_0.min.js
+    notes: >-
+      Test-environment SDK (marked deprecated in the docs); the production
+      SDK is provided after successful integration testing.

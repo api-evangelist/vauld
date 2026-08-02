@@ -1,0 +1,58 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vauld.com/
+spec_type: Webhooks
+description: >-
+  Webhook event surface of the Vauld Enterprise API, captured from the
+  published API reference. Vauld publishes no AsyncAPI document; this is
+  the documented webhook catalog. Events for user creation, balance
+  changes, KYC updates, and fiat/crypto deposits and withdrawals are
+  pushed via HTTP POST to a registered webhook URL.
+
+registration:
+  - endpoint: POST /misc/addWebhook
+    params: [orgID, webhookUrl]
+    description: Register the URL where webhook updates are received via POST.
+  - endpoint: POST /misc/testWebhook
+    description: Test delivery to the registered webhook URL.
+  - endpoint: POST /api/v1/borrowing/registerWebhook
+    description: Register a URL notified on change in loan collateralization ratio.
+
+envelope: |-
+  {
+    "event": <eventName>,
+    "subEvent": <subEventName>,
+    "eventData": {
+      "success": <true/false>,
+      "data": { ... }   // relevant data pertaining to event type
+    }
+  }
+
+events:
+  - name: user
+    description: Updates related to users, such as creation of users.
+    sub_events:
+      - {name: userCreated, description: On creation of new user}
+  - name: kyc
+    description: Updates related to KYC, such as when KYC is accepted or rejected.
+    sub_events:
+      - {name: status, description: Change in KYC status}
+      - {name: aadharVerification, description: Aadhar verification data on KYC verification}
+      - {name: voterIDVerification, description: VoterID data on KYC verification}
+      - {name: passportVerification, description: Passport data on KYC verification}
+      - {name: panVerification, description: PAN data on KYC verification}
+      - {name: selfieVerification, description: Selfie verification data}
+  - name: fiat
+    description: Updates related to deposits and withdrawal of fiat currencies.
+    sub_events:
+      - {name: deposit, description: On deposit of fiat}
+      - {name: withdrawal, description: On withdrawal of fiat}
+  - name: crypto
+    description: Updates related to deposits and withdrawal of crypto tokens.
+    sub_events:
+      - {name: deposit, description: On deposit of crypto tokens}
+      - {name: withdrawal, description: On withdrawal of crypto tokens}
+      - {name: internalTransfer, description: Internal crypto transfer processed between users of the same organizationID}
+
+security:
+  signing: none-documented

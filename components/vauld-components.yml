@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vauld.com/
+description: >-
+  Client-side / embeddable components published by Vauld, captured from
+  the API reference. One family: the Instant Payment (cards) SDK used to
+  render an INR card-payment page inside a partner web page. The docs mark
+  it as deprecated.
+
+components:
+  - family: Instant Payment SDK
+    kind: browser-script
+    status: deprecated
+    loader: https://bohstaticfiles.s3.amazonaws.com/cardsSDK_v1_0.min.js
+    global: window.BoH
+    entrypoint: |-
+      window.BoH.makeInstantPayment(paymentRequest, 'paymentEl', successCallbackFn, errorCallbackFn);
+    parameters:
+      - name: paymentRequest
+        description: 'JS object: { amount, userID, orgID, apiKey } — amount must be a valid JavaScript number; user KYC completion is a prerequisite.'
+      - name: paymentEl
+        description: id of the DOM element (preferably a full-width div) where the payment page renders.
+      - name: successCallbackFn
+        description: 'Callback receiving { status: "success", message, amount, updatedBalance }.'
+      - name: errorCallbackFn
+        description: 'Callback receiving { status: "fail", message, amount }.'
+    environment: >-
+      The published script is the test-environment SDK; the production SDK
+      is provided after successful integration testing.
