@@ -48,7 +48,7 @@ x-enrichment:
   pass: local-v1
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-10-06'
 tags:
 - Company
 - Crypto
@@ -98,6 +98,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://www.vauld.com/news/
+  type: Blog
 - type: DomainSecurity
   url: security/vauld-domain-security.yml
 - type: Website
