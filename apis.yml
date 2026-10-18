@@ -51,6 +51,17 @@ created: '2026-07-17'
 modified: '2026-10-06'
 tags:
 - Company
+- Cryptocurrency
+- Lending
+- Borrowing
+- Trading
+- Wallets
+- KYC
+- Fintech
+- India
+- Singapore
+tags_raw:
+- Company
 - Crypto
 - Lending
 - Borrowing
@@ -73,6 +84,13 @@ apis:
   humanURL: https://docs.vauld.com/
   baseURL: https://api.vauld.com
   tags:
+  - Cryptocurrency
+  - Lending
+  - Borrowing
+  - Wallets
+  - KYC
+  - Fiat
+  tags_raw:
   - Crypto
   - Lending
   - Borrowing
